@@ -112,7 +112,7 @@ body {
 ══════════════════════════════════════════ */
 .container {
     width: 100%;
-    max-width: 600px; /* Snugger mobile-first optimized container */
+    max-width: 580px; /* Snugger mobile-first optimized container */
     margin: 0 auto;
     padding: 0 20px;  /* Safe margins on mobile */
 }
@@ -123,7 +123,7 @@ body {
     margin-bottom: 60px;
 }
 @media (min-width: 768px) {
-    .container { max-width: 680px; }
+    .container { max-width: 1140px; }
     .section-spacer {
         margin-top: 100px;
         margin-bottom: 100px;
@@ -177,7 +177,6 @@ body {
     height: 4px;
     background: linear-gradient(90deg, var(--rose), var(--gold));
     border-radius: var(--r-pill);
-    margin: 20px auto 0;
     opacity: 0;
     animation: fadeUp .7s .85s forwards;
 }
@@ -352,14 +351,7 @@ body {
 
 .reveal-card.card-revealed {
     overflow: hidden;
-    background: var(--card-bg);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border-radius: var(--r-md);
-    border: 1.5px solid rgba(255,255,255,.8);
-    box-shadow: var(--shadow-lg);
-    padding: 40px 24px !important;
-    cursor: default;
+
 }
 .card-back-inner {
     animation: popIn .55s cubic-bezier(.34,1.56,.64,1) forwards;
@@ -467,7 +459,14 @@ body {
     color: var(--muted);
     margin-bottom: 12px;
 }
-.img-wrapper { overflow: hidden; border-radius: var(--r-sm); }
+.img-wrapper { 
+    overflow: hidden; 
+    border-radius: var(--r-sm); 
+    
+    /* 1. กำหนดอัตราส่วนความกว้างและสูงที่แน่นอนให้กล่องรูปภาพ */
+    width: 100%;
+    aspect-ratio: 1 / 1; /* อัตราส่วน 1:1 จะได้รูปสี่เหลี่ยมจัตุรัสเท่ากันทุกรูป (หรือเปลี่ยนเป็น 16 / 9 หากต้องการแนวนอนผืนผ้า) */
+}
 .timeline-img, .memory-img {
     width: 100%; height: auto; display: block;
     object-fit: cover;
@@ -814,7 +813,7 @@ footer {
 
 @media (min-width: 580px) {
     .folder-inner-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
@@ -909,6 +908,441 @@ footer {
     }
     .full-width-gallery .section-title,
     .full-width-gallery .folder-container {
-        max-width: 680px; /* Matches your standard desktop media query max-width */
+        max-width: 1142px; /* Matches your standard desktop media query max-width */
+    }
+}
+
+
+
+
+/* Container Layout & Festive Ambient Background */
+.photo-column-wrapper {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    position: relative;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 107, 129, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(255, 159, 67, 0.08) 0%, transparent 50%);
+}
+
+/* Polaroid Frame with Idle Floating Animation */
+.playful-polaroid-frame {
+    position: relative;
+    background: #ffffff;
+    padding: 16px 16px 32px 16px;
+    border-radius: 12px;
+    max-width: 85%;
+    box-sizing: border-box;
+    box-shadow: 0 12px 28px rgba(255, 107, 129, 0.12), 0 2px 4px rgba(0,0,0,0.04);
+    
+    /* Base tilt & anchor for transition */
+    transform: rotate(-3deg);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    
+    /* Gentle floating animation when user is just looking at it */
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+/* Washi Tape / Torn Sticker Deco */
+.washi-tape {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 90px;
+    height: 26px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(2px);
+    border-left: 3px dashed rgba(255, 107, 129, 0.35);
+    border-right: 3px dashed rgba(255, 107, 129, 0.35);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    z-index: 2;
+}
+
+/* Rounded Mask for the Image */
+.photo-image-mask {
+    overflow: hidden;
+    border-radius: 8px;
+    background: #fff5f6;
+    display: block;
+}
+
+/* Image Filter & Hover Zoom */
+.celebration-photo {
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05) contrast(1.02);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Corner Sparkle Badge */
+.frame-sparkle {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 1.2rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+}
+
+/* Modern Gradient Text for the Username */
+.playful-username {
+    margin: 24px 0 0 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2f3542;
+    letter-spacing: 0.5px;
+    background: linear-gradient(120deg, #ff6b81 0%, #ff4757 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ----------------------------------------------------
+   INTERACTIVE HOVER STATES
+---------------------------------------------------- */
+
+.playful-polaroid-frame:hover {
+    /* Cancels float animation smoothly, snaps straight up, and leaps forward */
+    animation-play-state: paused;
+    transform: rotate(1deg) scale(1.07) translateY(-5px);
+    box-shadow: 0 24px 45px rgba(255, 71, 87, 0.2), 0 4px 8px rgba(0,0,0,0.04);
+}
+
+/* Nested transitions triggered by parent hover */
+.playful-polaroid-frame:hover .celebration-photo {
+    transform: scale(1.06);
+}
+
+.playful-polaroid-frame:hover .frame-sparkle {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* ----------------------------------------------------
+   ANIMATION KEYFRAMES
+---------------------------------------------------- */
+@keyframes gentleFloat {
+    0% {
+        transform: rotate(-3deg) translateY(0px);
+    }
+    50% {
+        transform: rotate(-2deg) translateY(-8px);
+    }
+    100% {
+        transform: rotate(-3deg) translateY(0px);
+    }
+}
+
+
+/* ══════════════════════════════════════════
+   CARD REVEAL: POPPING & BURST ENTRANCE
+══════════════════════════════════════════ */
+
+/* The entire layout card panel snaps into view smoothly */
+.card-back-inner-wrapper {
+    animation: layoutFadeIn 0.6s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+}
+
+/* Overriding the default polaroid to execute a big entrance POP upon initialization */
+#cardBack:not(.hidden) .playful-polaroid-frame {
+    animation: revealPopEntrance 0.8s cubic-bezier(0.34, 1.75, 0.64, 1) forwards;
+    transform-origin: center center;
+}
+
+/* ----------------------------------------------------
+   THE REVEAL BURST PARTICLE EMITTER
+---------------------------------------------------- */
+.burst-emitter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; 
+}
+
+/* Ring Shockwave expanding outward from frame bounds */
+.burst-emitter::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border: 6px solid var(--rose);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+/* Confetti multi-colored sprinkle blast arrays */
+.burst-emitter::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 130%;
+    height: 130%;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    background-image: 
+        radial-gradient(circle, var(--rose) 5px, transparent 6px),
+        radial-gradient(circle, var(--gold) 6px, transparent 7px),
+        radial-gradient(circle, var(--sage) 5px, transparent 6px),
+        radial-gradient(circle, var(--purple) 5px, transparent 6px),
+        radial-gradient(circle, #1e90ff 4px, transparent 5px);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 15% 15%, 12% 12%;
+    background-position: 8% 15%, 92% 12%, 15% 85%, 82% 78%, 50% 95%;
+    background-repeat: no-repeat;
+}
+
+/* Fire animations instantly when card is revealed (the hidden class drops) */
+#cardBack:not(.hidden) .burst-emitter::before {
+    animation: ringShockwaveBlast 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+#cardBack:not(.hidden) .burst-emitter::after {
+    animation: confettiParticlesBlast 0.7s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+/* ----------------------------------------------------
+   HOVER ACTIONS (Maintained after pop entrance)
+---------------------------------------------------- */
+.playful-polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.06) translateY(-5px) !important;
+    box-shadow: 0 25px 50px rgba(255, 71, 87, 0.22);
+}
+.playful-polaroid-frame:hover .celebration-photo { transform: scale(1.05); }
+.playful-polaroid-frame:hover .frame-sparkle { transform: scale(1.25) rotate(20deg); }
+
+/* ----------------------------------------------------
+   ANIMATION KEYFRAMES ENGINE
+---------------------------------------------------- */
+@keyframes layoutFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealPopEntrance {
+    0% {
+        transform: rotate(-12deg) scale(0.3);
+        opacity: 0;
+    }
+    65% {
+        transform: rotate(3deg) scale(1.15); /* Snaps slightly larger past normal bounds */
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-3deg) scale(1); /* Settles gently into its signature tilt */
+        opacity: 1;
+    }
+}
+
+@keyframes ringShockwaveBlast {
+    0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        border-width: 8px;
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.4);
+        border-width: 1px;
+        opacity: 0;
+    }
+}
+
+@keyframes confettiParticlesBlast {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* ══════════════════════════════════════════
+   Timeline Section (Mobile First - Vertical)
+══════════════════════════════════════════ */
+.timeline-slider-wrapper {
+    width: 100%;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column; /* หน้าจอมือถือตั้งเป็นแนวตั้ง */
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px; top: 15px; bottom: 15px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--rose) 0%, var(--gold) 100%);
+    border-radius: var(--r-pill);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 35px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+    width: 100%;
+}
+.timeline-item.item-active { opacity: 1; transform: translateY(0); }
+
+.timeline-dot {
+    position: absolute;
+    left: -24px;
+    top: 18px;
+    width: 15px; height: 15px;
+    background: var(--rose);
+    border-radius: 50%;
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2.5px var(--rose-soft);
+    z-index: 2;
+}
+
+.timeline-content {
+    padding: 20px 16px;
+    border-radius: var(--r-md);
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1.5px solid rgba(255,255,255,.75);
+    box-shadow: var(--shadow);
+}
+
+.timeline-date {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+    padding: 3px 11px;
+    border-radius: var(--r-pill);
+    margin-bottom: 9px;
+}
+
+.timeline-content h3 {
+    font-family: var(--ff-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.timeline-content p {
+    font-size: .9rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.img-wrapper { overflow: hidden; border-radius: var(--r-sm); }
+.timeline-img {
+    width: 100%; 
+    height: 100%; /* 2. บังคับให้ความสูงเต็มกล่อง wrapper เสมอ */
+    display: block;
+    
+    /* 3. จุดสำคัญที่สุด: ป้องกันไม่ให้ภาพบีบ/เบี้ยว */
+    object-fit: cover; 
+    
+    /* 4. (ทางเลือก) จัดจุดกึ่งกลางการตัดภาพ */
+    object-position: center; 
+    
+    transition: transform .5s ease;
+}
+.timeline-content:hover .timeline-img { transform: scale(1.04); }
+
+
+/* ──────────────────────────────────────────
+   Desktop Layout Breakout (Horizontal Slider)
+   ────────────────────────────────────────── */
+@media (min-width: 768px) {
+    /* ขยายความกว้างเต็มจอเพื่อให้เลื่อนหลุดกรอบ parent container ได้อย่างสวยงาม */
+.timeline-slider-wrapper {
+        /* เอาเทคนิค Breakout เต็มจอออก เพื่อให้อยู่ในโครงสร้าง .container ปกติ */
+        width: 100%; 
+        max-width: 1050px; /* จำกัดขนาดกรอบตามที่ตั้งใจ */
+        margin: 0 auto;    /* จัดตัวมันเองให้อยู่กึ่งกลางหน้าจอ */
+        
+        /* เอา padding ออกทั้งหมดตามที่ต้องการ */
+        padding: 0; 
+        
+        overflow-x: auto;  /* เปิดแถบเลื่อนแนวนอน */
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory; /* เลื่อนแล้วล็อกตำแหน่งการ์ดอัตโนมัติ */
+    }
+
+    /* ปรับแต่งแถบ Scrollbar สวยๆ สไตล์มินิมอล */
+    .timeline-slider-wrapper::-webkit-scrollbar {
+        height: 8px;
+    }
+    .timeline-slider-wrapper::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.03);
+        border-radius: 10px;
+    }
+    .timeline-slider-wrapper::-webkit-scrollbar-thumb {
+        background: var(--rose-soft);
+        border-radius: 10px;
+    }
+    .timeline-slider-wrapper::-webkit-scrollbar-thumb:hover {
+        background: var(--rose);
+    }
+
+    .timeline {
+        flex-direction: row; /* เปลี่ยนเป็นแนวนอน */
+        gap: 40px;
+        padding-left: 0;
+        width: max-content; /* ปล่อยให้ความกว้างยืดออกไปตามจำนวนการ์ด */
+        padding-bottom: 15px;
+    }
+
+    /* เปลี่ยนเส้นแนวดิ่งเดิมให้เป็นเส้นแนวนอนวิ่งทะลุผ่านทุกไอเทม */
+    .timeline::before {
+        left: 0;
+        right: 0;
+        top: 25px; /* จัดเส้นให้อยู่ในแนวระดับเดียวกับจุด Dot */
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 100%);
+    }
+
+    .timeline-item {
+        margin-bottom: 0;
+        width: 320px; /* กำหนดขนาดการ์ดแต่ละใบให้คงที่บน Desktop */
+        flex-shrink: 0;
+        scroll-snap-align: center; /* จุดที่ต้องการล็อกเมื่อเลื่อนมาถึง */
+        transform: translateX(32px) translateY(0); /* เปลี่ยนการ Reveal จากล่างขึ้นบนเป็นขวาไปซ้าย */
+    }
+    .timeline-item.item-active { transform: translateX(0); }
+
+    /* ปรับตำแหน่งจุดวงกลมให้อยู่ด้านบนกึ่งกลางของการ์ดแต่ละใบ */
+    .timeline-dot {
+        left: 20px;
+        top: 19px;
+    }
+
+    .timeline-content {
+        margin-top: 45px; /* ดันกล่องข้อความลงมาใต้เส้นแนวนอน */
     }
 }

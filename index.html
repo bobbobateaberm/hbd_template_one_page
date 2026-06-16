@@ -24,21 +24,14 @@
     <div class="bg-decor b-3">🌸</div>
     <div class="bg-decor b-4">🥳</div>
 
-    <header class="hero-section">
-        <div class="hero-eyebrow">วันพิเศษของคุณ · Today is your day</div>
-        <h1>Happy<br><em>Birthday!</em> 🎂</h1>
-        <p>สุขสันต์วันเกิดนะ! ขอให้ปีนี้เป็นปีที่ดีมากๆ</p>
-        <div class="hero-rule"></div>
-    </header>
 
-    <main class="container">
 
-        <section class="widget-section section-spacer">
+        <section >
             <div class="reveal-card pulse-button" id="revealCard">
                 <div class="confetti-container" id="confettiContainer"></div>
 
                 <div class="card-front" id="cardFront">
-                    <div class="gift-scene">
+                    <div style="margin-top: 25vh;" class="gift-scene">
                         <div class="gift-lid" id="giftLid">
                             <div class="lid-ribbon-h"></div>
                         </div>
@@ -54,82 +47,109 @@
                     </div>
                 </div>
 
-                <div class="card-back hidden" id="cardBack">
-                    <div class="card-back-inner">
-                        <div class="card-back-emoji">🎉</div>
-                        <h2>ขอให้มีความสุขมากๆ!</h2>
-                        <p class="birthday-wish">
-                            "ขอให้วันนี้เต็มไปด้วยรอยยิ้ม เสียงหัวเราะ และช่วงเวลาดี ๆ ที่น่าจดจำ
-                            ขอบคุณที่เข้ามาเป็นส่วนหนึ่งของชีวิตและทำให้หลาย ๆ วันมีความหมายมากขึ้น
-                            ขอให้ปีนี้เป็นอีกปีที่เต็มไปด้วยเรื่องดี ๆ ความสุข และสิ่งที่ตั้งใจไว้ได้สำเร็จนะ
-                            "
-                        </p>
-                        <p class="signature">~ ด้วยรัก</p>
-                    </div>
-                </div>
+<div class="card-back hidden" id="cardBack" style="font-family: system-ui, -apple-system, sans-serif; background-image: linear-gradient(rgb(255, 245, 248), rgba(251, 215, 229, 0.45)), url('./src/ballon.png'); background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 20px 40px rgba(255, 107, 138, 0.15), 0 8px 16px rgba(0, 0, 0, 0.06); transition: box-shadow 0.3s ease;">    
+    <div style="flex: 1.2 1 300px; padding: 40px min(10%, 50px); display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; backdrop-filter: blur(1px);">
+        <header class="hero-section" style="text-align: center; padding: 0;">
+            <div class="hero-eyebrow" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff6b81; font-weight: 700; margin-bottom: 12px; opacity: 1; animation: none;">วันพิเศษของคุณ · Today is your day</div>
+        </header>
+    </div>
+
+    <div class="card-back-inner-wrapper" style="display: flex; flex-wrap: wrap; width: 100%; min-height: 680px; overflow: hidden;  ">
+    
+
+
+    <div class="photo-column-wrapper">
+        <div class="playful-polaroid-frame">
+            <div class="burst-emitter"></div>
+            
+            <div class="washi-tape"></div>
+
+            <div class="photo-image-mask">
+                <img class="celebration-photo" src="./pics/gall2.jpg" alt="Celebration">
+            </div>
+            
+            <div class="frame-sparkle">✨</div>
+        </div>
+
+        <p class="playful-username">@Username</p>
+    </div>
+
+    <div style="flex: 1.2 1 300px; padding: 40px min(10%, 50px); display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; backdrop-filter: blur(1px);">
+        <header class="hero-section" style="text-align: left; padding: 0;">
+            <h1 style="font-size: calc(1.8rem + 1vw); line-height: 1.1; margin: 0 0 16px 0; color: #2f3542; font-weight: 800; opacity: 1; animation: none;">Happy<br><em style="font-style: italic; color: #ff4757; display: inline-block;">Birthday!</em> 🎂</h1>
+            <p style="font-size: 1.1rem; color: #2f3542; font-weight: 500; line-height: 1.6; margin: 0 0 24px 0; opacity: 1; animation: none; text-shadow: 0 1px 4px rgba(255,255,255,0.8);">สุขสันต์วันเกิดนะ! ขอให้ปีนี้เป็นปีที่ดีมากๆ</p>
+        </header>
+    </div>
+
+</div>
+                
             </div>
         </section>
 
+
+    <main class="container">
         <div id="secretContent" class="hidden-content">
 
             <section class="timeline-section scroll-reveal section-spacer">
-                <h2 class="section-title">การเดินทางจนถึงวันนี้ 🗺️</h2>
-                <div class="timeline">
+    <h2 class="section-title">การเดินทางจนถึงวันนี้ 🗺️</h2>
+    
+    <!-- เพิ่ม wrapper ครอบเพื่อทำขอบเขตของ slider -->
+    <div class="timeline-slider-wrapper">
+        <div class="timeline">
 
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">Day 1</span>
-                            <h3>จุดเริ่มต้น</h3>
-                            <p>ดาวดวงหนึ่งได้ถือกำเนิดขึ้น! นี่คือจุดเริ่มต้นของการเดินทางอันสวยงาม</p>
-                            <div class="img-wrapper">
-                                <img src="./pics/baby.jpg" alt="Baby photo" class="timeline-img">
-                            </div>
-                        </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Day 1</span>
+                    <h3>จุดเริ่มต้น</h3>
+                    <p>ดาวดวงหนึ่งได้ถือกำเนิดขึ้น! นี่คือจุดเริ่มต้นของการเดินทางอันสวยงาม</p>
+                    <div class="img-wrapper">
+                        <img src="./pics/baby.jpg" alt="Baby photo" class="timeline-img">
                     </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">Year 20XX</span>
-                            <h3>Life Event 1 Title</h3>
-                            <p>Template description for an important milestone, like starting school or a core childhood memory.</p>
-                            <div class="img-wrapper">
-                                <img src="./pics/grown.JPG" alt="Event 1" class="timeline-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">Year 20XX</span>
-                            <h3>Life Event 2 Title</h3>
-                            <p>Template description for another massive milestone. Graduation, an unforgettable trip, or a big achievement.</p>
-                            <div class="img-wrapper">
-                                <img src="./pics/work.JPG" alt="Event 2" class="timeline-img">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">ปัจจุบัน</span>
-                            <h3>บทปัจจุบัน</h3>
-                            <p>ไล่ตามความฝัน สร้างความทรงจำ และฉลองวันเกิดอันสวยงามในวันนี้!</p>
-                            <div class="img-wrapper">
-                                <img src="./pics/current.jpg" alt="Current photo" class="timeline-img">
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </section>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Year 20XX</span>
+                    <h3>Life Event 1 Title</h3>
+                    <p>Template description for an important milestone, like starting school or a core childhood memory.</p>
+                    <div class="img-wrapper">
+                        <img src="./pics/grown.JPG" alt="Event 1" class="timeline-img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">Year 20XX</span>
+                    <h3>Life Event 2 Title</h3>
+                    <p>Template description for another massive milestone. Graduation, an unforgettable trip, or a big achievement.</p>
+                    <div class="img-wrapper">
+                        <img src="./pics/work.JPG" alt="Event 2" class="timeline-img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">ปัจจุบัน</span>
+                    <h3>บทปัจจุบัน</h3>
+                    <p>ไล่ตามความฝัน สร้างความทรงจำ และฉลองวันเกิดอันสวยงามในวันนี้!</p>
+                    <div class="img-wrapper">
+                        <img src="./pics/current.jpg" alt="Current photo" class="timeline-img">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
             <section class="camera-generator-section scroll-reveal section-spacer">
-                <h2 class="section-title">สุ่มรูปภาพความทรงจำ 📸</h2>
-                
                 <div class="camera-body">
                     <div class="camera-lens">
                         <div class="lens-reflection"></div>
