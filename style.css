@@ -1,0 +1,914 @@
+/* ══════════════════════════════════════════
+   Reset & Base
+══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    /* Palette */
+    --rose:      #FF6B8A;
+    --rose-soft: #FFD6E0;
+    --rose-dark: #E8527A;
+    --gold:      #FFB347;
+    --gold-dark: #E8963A;
+    --sage:      #52C9A0;
+    --purple:    #B47FEB;
+    --cream:     #FFF8F0;
+    --ink:       #2D1B33;
+    --muted:     #8A7490;
+    --card-bg:   rgba(255,255,255,0.85);
+    --white:     #ffffff;
+
+    /* Shadows */
+    --shadow:    0 6px 24px rgba(255,107,138,.14);
+    --shadow-lg: 0 16px 48px rgba(45,27,51,.11);
+    --shadow-xl: 0 28px 60px rgba(45,27,51,.15);
+
+    /* Radius */
+    --r-xs:   8px;
+    --r-sm:   14px;
+    --r-md:   22px;
+    --r-lg:   32px;
+    --r-pill: 999px;
+
+    /* Typography */
+    --ff-display: 'Kodchasan', 'Sarabun', sans-serif;
+    --ff-body:    'Sarabun', 'Kodchasan', sans-serif;
+
+    /* Blur */
+    --blur: blur(16px);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--ff-body);
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════
+   Ambient Background
+══════════════════════════════════════════ */
+.ambient {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.ambient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .20;
+}
+.ab1 { width: 560px; height: 560px; background: #FFB3C6; top: -160px; left: -120px; }
+.ab2 { width: 420px; height: 420px; background: #FFE4A0; bottom: -100px; right: -100px; }
+.ab3 { width: 280px; height: 280px; background: #B5EFD8; top: 45%; left: 58%; }
+
+.bg-decor {
+    position: fixed;
+    font-size: 1.5rem;
+    opacity: .15;
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+}
+.b-1 { top: 8%;    left: 4%;   animation: floatY 9s  infinite ease-in-out; }
+.b-2 { top: 40%;   right: 5%;  animation: floatY 11s infinite ease-in-out 1.4s; }
+.b-3 { bottom: 20%; left: 5%;  animation: floatY 13s infinite ease-in-out 2.8s; }
+.b-4 { top: 70%;   right: 4%;  animation: floatY 7s  infinite ease-in-out .7s; }
+
+@keyframes floatY {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-20px) rotate(12deg); }
+}
+
+/* ══════════════════════════════════════════
+   Screen-wide Camera Flash System Overlay
+══════════════════════════════════════════ */
+.flash-overlay {
+    position: fixed;
+    inset: 0;
+    background: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+.flash-overlay.trigger-flash {
+    animation: cameraShutterFlash 0.45s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+@keyframes cameraShutterFlash {
+    0%   { opacity: 0; }
+    15%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ══════════════════════════════════════════
+   Responsive Layout & Spacing Engine
+══════════════════════════════════════════ */
+.container {
+    width: 100%;
+    max-width: 600px; /* Snugger mobile-first optimized container */
+    margin: 0 auto;
+    padding: 0 20px;  /* Safe margins on mobile */
+}
+
+/* Clean spaces to breathe between sections */
+.section-spacer {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+@media (min-width: 768px) {
+    .container { max-width: 680px; }
+    .section-spacer {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+}
+
+/* ══════════════════════════════════════════
+   Hero Header Section 
+══════════════════════════════════════════ */
+.hero-section {
+    text-align: center;
+    padding: 60px 20px 20px;
+}
+.hero-eyebrow {
+    font-family: var(--ff-body);
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp .7s .2s forwards;
+}
+.hero-section h1 {
+    font-family: var(--ff-display);
+    font-size: clamp(2.6rem, 8vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp .8s .4s forwards;
+    letter-spacing: -.01em;
+}
+.hero-section h1 em {
+    font-style: italic;
+    color: var(--rose);
+    display: inline-block;
+    transform: rotate(-1.5deg);
+}
+.hero-section p {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp .8s .65s forwards;
+}
+.hero-rule {
+    width: 40px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rose), var(--gold));
+    border-radius: var(--r-pill);
+    margin: 20px auto 0;
+    opacity: 0;
+    animation: fadeUp .7s .85s forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════
+   Section Titles Framework
+══════════════════════════════════════════ */
+.section-title {
+    font-family: var(--ff-display);
+    font-size: 1.55rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--ink);
+    margin-bottom: 30px;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rose), var(--gold));
+    border-radius: var(--r-pill);
+    margin: 8px auto 0;
+}
+
+/* ══════════════════════════════════════════
+   Content Structural Visibility Mapping
+══════════════════════════════════════════ */
+.hidden { display: none !important; }
+
+.hidden-content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 1.1s ease, max-height 2s ease;
+}
+.hidden-content.reveal-active {
+    opacity: 1;
+    max-height: 9000px;
+}
+
+/* ══════════════════════════════════════════
+   Interactive Reveal Card 
+══════════════════════════════════════════ */
+.reveal-card {
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 10px 0 20px;
+}
+.reveal-card.pulse-button .gift-body {
+    animation: giftLift 2.2s infinite ease-in-out;
+}
+@keyframes giftLift {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-7px); }
+}
+
+.gift-scene {
+    position: relative;
+    width: 200px;
+    height: 220px;
+    margin: 0 auto;
+}
+.gift-lid {
+    position: absolute;
+    top: 0; left: -8px;
+    width: calc(100% + 16px);
+    height: 58px;
+    background: var(--rose-dark);
+    border-radius: var(--r-sm) var(--r-sm) 4px 4px;
+    z-index: 4;
+    transform-origin: center bottom;
+    transition: transform 0.55s cubic-bezier(.34,1.56,.64,1), opacity 0.45s ease;
+}
+.lid-ribbon-h {
+    position: absolute;
+    top: 50%; left: 0;
+    width: 100%; height: 12px;
+    margin-top: -6px;
+    background: var(--gold);
+}
+.gift-body {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 168px;
+    background: var(--rose);
+    border-radius: var(--r-xs) var(--r-xs) var(--r-sm) var(--r-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+.body-ribbon-v {
+    position: absolute;
+    top: 0; left: 50%;
+    width: 12px; height: 100%;
+    margin-left: -6px;
+    background: var(--gold);
+    z-index: 1;
+}
+.body-ribbon-h {
+    position: absolute;
+    top: 38%; left: 0;
+    width: 100%; height: 12px;
+    background: var(--gold);
+    z-index: 1;
+}
+.gift-body-text {
+    position: relative;
+    z-index: 2;
+    padding: 0 16px;
+    text-align: center;
+}
+.tap-label {
+    display: block;
+    font-family: var(--ff-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,.18);
+    margin-bottom: 4px;
+}
+.tap-sub {
+    display: block;
+    font-size: .8rem;
+    color: rgba(255,255,255,.88);
+    font-weight: 500;
+}
+.gift-shadow {
+    position: absolute;
+    bottom: -12px; left: 50%;
+    transform: translateX(-50%);
+    width: 140px; height: 16px;
+    background: rgba(180,80,100,.18);
+    border-radius: 50%;
+    filter: blur(6px);
+    z-index: 1;
+    transition: opacity .4s, transform .4s;
+}
+
+.reveal-card.is-opening .gift-lid {
+    transform: translateY(-160px) rotate(-38deg) scale(0.7);
+    opacity: 0;
+}
+.reveal-card.is-opening .gift-body {
+    animation: bodyPop 0.5s cubic-bezier(.34,1.8,.64,1) forwards;
+}
+@keyframes bodyPop {
+    0%   { transform: scaleY(1) scaleX(1); }
+    25%  { transform: scaleY(.82) scaleX(1.1); }
+    55%  { transform: scaleY(1.08) scaleX(.96); }
+    100% { transform: scaleY(1) scaleX(1); }
+}
+.reveal-card.is-opening .gift-shadow {
+    transform: translateX(-50%) scaleX(1.3);
+    opacity: .6;
+}
+
+.reveal-card.card-revealed {
+    overflow: hidden;
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border-radius: var(--r-md);
+    border: 1.5px solid rgba(255,255,255,.8);
+    box-shadow: var(--shadow-lg);
+    padding: 40px 24px !important;
+    cursor: default;
+}
+.card-back-inner {
+    animation: popIn .55s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes popIn {
+    from { opacity: 0; transform: scale(.75) translateY(16px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.card-back-emoji {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+    animation: wigglePop .6s .1s cubic-bezier(.34,1.56,.64,1) forwards;
+    opacity: 0;
+    transform: scale(0);
+}
+@keyframes wigglePop {
+    0%   { opacity: 0; transform: scale(0) rotate(-20deg); }
+    70%  { transform: scale(1.2) rotate(8deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.card-back h2 {
+    font-family: var(--ff-display);
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--rose-dark);
+    margin-bottom: 14px;
+    line-height: 1.3;
+}
+.birthday-wish {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+.signature {
+    margin-top: 18px;
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--rose);
+}
+
+/* ══════════════════════════════════════════
+   Timeline Section
+══════════════════════════════════════════ */
+.timeline {
+    position: relative;
+    padding-left: 24px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px; top: 15px; bottom: 15px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--rose) 0%, var(--gold) 100%);
+    border-radius: var(--r-pill);
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 35px;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+}
+.timeline-item.item-active { opacity: 1; transform: translateY(0); }
+
+.timeline-dot {
+    position: absolute;
+    left: -24px;
+    top: 18px;
+    width: 15px; height: 15px;
+    background: var(--rose);
+    border-radius: 50%;
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2.5px var(--rose-soft);
+    z-index: 2;
+}
+.timeline-content {
+    padding: 20px 16px;
+    border-radius: var(--r-md);
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1.5px solid rgba(255,255,255,.75);
+    box-shadow: var(--shadow);
+}
+.timeline-date {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+    padding: 3px 11px;
+    border-radius: var(--r-pill);
+    margin-bottom: 9px;
+}
+.timeline-content h3 {
+    font-family: var(--ff-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.timeline-content p {
+    font-size: .9rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+.img-wrapper { overflow: hidden; border-radius: var(--r-sm); }
+.timeline-img, .memory-img {
+    width: 100%; height: auto; display: block;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+.timeline-content:hover .timeline-img { transform: scale(1.04); }
+
+/* ══════════════════════════════════════════
+   Remastered: Polaroid Snapshot Photo Gen 
+══════════════════════════════════════════ */
+.camera-generator-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* The Skeuomorphic Retro Camera Graphic Frame */
+.camera-body {
+    position: relative;
+    width: 280px;
+    height: 150px;
+    background: #4a5568; /* Solid deep metallic slate color */
+    border-radius: 18px;
+    box-shadow: 0 8px 0 #2d3748, 0 16px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    z-index: 10;
+}
+.camera-stripe {
+    position: absolute;
+    top: 40px; left: 0;
+    width: 100%; height: 16px;
+    background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 50%, var(--sage) 100%);
+}
+.camera-lens {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    width: 90px; height: 90px;
+    background: #1a202c;
+    border: 6px solid #e2e8f0;
+    border-radius: 50%;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 3;
+}
+.lens-reflection {
+    position: absolute;
+    top: 12px; left: 12px;
+    width: 25px; height: 25px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    filter: blur(1px);
+}
+.camera-flash-bulb {
+    position: absolute;
+    top: 14px; right: 24px;
+    width: 28px; height: 18px;
+    background: #edf2f7;
+    border: 2px solid #cbd5e0;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Shutter Trigger Button */
+.camera-shutter-btn {
+    position: absolute;
+    top: -10px; left: 24px;
+    background: var(--rose-dark);
+    color: #fff;
+    border: none;
+    font-family: var(--ff-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: var(--r-xs);
+    box-shadow: 0 4px 0 #b83253, 0 6px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    z-index: 5;
+}
+.camera-shutter-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0px 0 #b83253, 0 2px 4px rgba(0,0,0,0.15);
+}
+.camera-shutter-btn:focus { outline: none; }
+
+/* The slot where film prints out */
+.camera-photo-slot {
+    width: 200px;
+    height: 6px;
+    background: #111;
+    border-radius: var(--r-pill);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+/* Output Layout Area Wrapper */
+.polaroid-output-area {
+    width: 100%;
+    max-width: 340px;
+    margin-top: 50px; /* Pull up into the slot alignment */
+    perspective: 1000px;
+}
+
+/* The Polaroid Photo Construction Layer */
+.polaroid-photo-frame {
+    background: #ffffff;
+    padding: 14px 14px 28px 14px;
+    box-shadow: 0 10px 25px rgba(45,27,51,0.12);
+    border: 1px solid rgba(0,0,0,0.06);
+    width: 100%;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    transform-origin: top center;
+}
+
+/* Animation trigger states applied programmatically */
+.polaroid-photo-frame.eject-photo-animation {
+    animation: polaroidEjectPopOut 1.4s cubic-bezier(0.18, 0.89, 0.32, 1.15) forwards;
+}
+@keyframes polaroidEjectPopOut {
+    0% {
+        transform: translateY(-130px) scaleY(0.1) scaleX(0.65) rotateX(-15deg);
+        opacity: 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        z-index: 1;
+    }
+    40% {
+        transform: translateY(15px) scaleY(1.02) scaleX(1.02) rotateX(5deg);
+        opacity: 1;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        z-index: 11;
+    }
+    70% {
+        transform: translateY(0px) scale(1) rotate(-2deg);
+        box-shadow: 0 10px 25px rgba(45,27,51,0.12);
+        z-index: 11;
+    }
+    100% {
+        transform: translateY(0px) scale(1) rotate(1.5deg);
+        box-shadow: 0 8px 22px rgba(45,27,51,0.1);
+        z-index: 11;
+    }
+}
+
+/* Polaroid States Internals */
+.polaroid-placeholder-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #e2e8f0;
+    padding: 20px;
+    text-align: center;
+}
+.placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.4;
+}
+.polaroid-placeholder-view p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.polaroid-rendered-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.polaroid-image-container {
+    width: 100%;
+    height: 240px;
+    background: #f7fafc;
+    overflow: hidden;
+    border: 1px solid #edf2f7;
+}
+.polaroid-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.polaroid-caption {
+    padding-top: 16px;
+    text-align: center;
+}
+.polaroid-caption h3 {
+    font-family: var(--ff-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+}
+.polaroid-caption p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   Memories Section
+══════════════════════════════════════════ */
+.memory-grid { display: flex; flex-direction: column; gap: 24px; }
+
+.memory-card {
+    border-radius: var(--r-md);
+    overflow: hidden;
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1.5px solid rgba(255,255,255,.75);
+    box-shadow: var(--shadow);
+}
+.memory-card:hover .memory-img { transform: scale(1.03); }
+
+.memory-img { height: 210px; }
+.video-container { width: 100%; background: #000; }
+video { width: 100%; display: block; }
+
+.memory-info { padding: 18px 20px; }
+.memory-info h3 {
+    font-family: var(--ff-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+.memory-info p { font-size: .86rem; color: var(--muted); line-height: 1.65; }
+
+/* ══════════════════════════════════════════
+   Scroll Reveal Animation Framework
+══════════════════════════════════════════ */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+}
+.scroll-reveal.active { opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════
+   Footer Section Layout
+══════════════════════════════════════════ */
+footer {
+    text-align: center;
+    padding: 60px 0 30px;
+    font-size: .82rem;
+    color: var(--muted);
+    letter-spacing: .03em;
+}
+
+/* ══════════════════════════════════════════
+   Reduced Motion
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important;
+    }
+}
+
+/* ══════════════════════════════════════════
+   Remastered: Gallery Folder Theme Styles
+══════════════════════════════════════════ */
+.folder-container {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* File Folder Tab Header Controls */
+.folder-tabs-header {
+    display: flex;
+    gap: 6px;
+    padding-left: 12px;
+    z-index: 2;
+    position: relative;
+    bottom: -1.5px; /* Pull together neatly into folder casing */
+}
+
+.folder-tab-btn {
+    background: rgba(220, 210, 225, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-bottom: none;
+    font-family: var(--ff-display);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 8px 16px;
+    border-radius: 12px 12px 0 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-origin: bottom center;
+}
+
+.folder-tab-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--ink);
+    transform: translateY(-2px);
+}
+
+.folder-tab-btn.active {
+    background: var(--card-bg);
+    color: var(--rose-dark);
+    padding-top: 10px;
+    padding-bottom: 9px;
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -4px 12px rgba(45, 27, 51, 0.04);
+    transform: translateY(0);
+    z-index: 5;
+}
+
+/* Main Folder Body Case Window */
+.folder-body-wrapper {
+    background: var(--card-bg);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    border-radius: 0 16px 16px 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    z-index: 1;
+}
+
+/* Internal File Display Layout Frame Grid */
+.folder-inner-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    transition: all 0.4s ease;
+}
+
+@media (min-width: 580px) {
+    .folder-inner-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Asset Item Node Entities */
+.folder-file-node {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.4s ease;
+    transform: scale(1);
+    opacity: 1;
+}
+
+.folder-file-node.hide-file {
+    display: none !important;
+    opacity: 0;
+    transform: scale(0.92);
+}
+
+.folder-file-node:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Modern File Metadata Tags */
+.file-tag-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.video-tag { background: linear-gradient(135deg, var(--rose-dark), var(--purple)); }
+.photo-tag { background: linear-gradient(135deg, var(--sage), var(--gold-dark)); }
+
+/* Responsive adjustments to native structures inside new system */
+.folder-file-node .memory-img {
+    height: 180px;
+}
+.folder-file-node .video-container {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    background: #000;
+}
+.folder-file-node video {
+    max-height: 100%;
+}
+
+/* ══════════════════════════════════════════
+   Full Width Gallery Breakout Remaster
+══════════════════════════════════════════ */
+.full-width-gallery {
+    /* 1. Break out of the parent container restrictions */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    
+    /* 2. Style configuration */
+    background-color: var(--white);
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Realign the inner structural elements back with the page container limits */
+.full-width-gallery .section-title,
+.full-width-gallery .folder-container {
+    width: 100%;
+    max-width: 600px; /* Matches your desktop mobile-first container max-width */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;  /* Matches your original container safe padding */
+    padding-right: 20px;
+}
+
+/* Responsively expand the internal wrappers when the screen grows */
+@media (min-width: 768px) {
+    .full-width-gallery {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .full-width-gallery .section-title,
+    .full-width-gallery .folder-container {
+        max-width: 680px; /* Matches your standard desktop media query max-width */
+    }
+}
