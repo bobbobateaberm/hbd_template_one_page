@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./src/icon.png">
+    <title>Happy Birthday!!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,600;0,700;1,700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cameraFlashOverlay" class="flash-overlay"></div>
+
+    <div class="ambient">
+        <div class="ambient-blob ab1"></div>
+        <div class="ambient-blob ab2"></div>
+        <div class="ambient-blob ab3"></div>
+    </div>
+    <div class="bg-decor b-1">🎈</div>
+    <div class="bg-decor b-2">✨</div>
+    <div class="bg-decor b-3">🌸</div>
+    <div class="bg-decor b-4">🥳</div>
+
+    <header class="hero-section">
+        <div class="hero-eyebrow">วันพิเศษของคุณ · Today is your day</div>
+        <h1>Happy<br><em>Birthday!</em> 🎂</h1>
+        <p>สุขสันต์วันเกิดนะ! ขอให้ปีนี้เป็นปีที่ดีมากๆ</p>
+        <div class="hero-rule"></div>
+    </header>
+
+    <main class="container">
+
+        <section class="widget-section section-spacer">
+            <div class="reveal-card pulse-button" id="revealCard">
+                <div class="confetti-container" id="confettiContainer"></div>
+
+                <div class="card-front" id="cardFront">
+                    <div class="gift-scene">
+                        <div class="gift-lid" id="giftLid">
+                            <div class="lid-ribbon-h"></div>
+                        </div>
+                        <div class="gift-body" id="giftBody">
+                            <div class="body-ribbon-v"></div>
+                            <div class="body-ribbon-h"></div>
+                            <div class="gift-body-text">
+                                <span class="tap-label">แตะเพื่อเปิด!</span>
+                                <span class="tap-sub">Tap to unwrap your surprise</span>
+                            </div>
+                        </div>
+                        <div class="gift-shadow"></div>
+                    </div>
+                </div>
+
+                <div class="card-back hidden" id="cardBack">
+                    <div class="card-back-inner">
+                        <div class="card-back-emoji">🎉</div>
+                        <h2>ขอให้มีความสุขมากๆ!</h2>
+                        <p class="birthday-wish">
+                            "ขอให้วันนี้เต็มไปด้วยรอยยิ้ม เสียงหัวเราะ และช่วงเวลาดี ๆ ที่น่าจดจำ
+                            ขอบคุณที่เข้ามาเป็นส่วนหนึ่งของชีวิตและทำให้หลาย ๆ วันมีความหมายมากขึ้น
+                            ขอให้ปีนี้เป็นอีกปีที่เต็มไปด้วยเรื่องดี ๆ ความสุข และสิ่งที่ตั้งใจไว้ได้สำเร็จนะ
+                            "
+                        </p>
+                        <p class="signature">~ ด้วยรัก</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="secretContent" class="hidden-content">
+
+            <section class="timeline-section scroll-reveal section-spacer">
+                <h2 class="section-title">การเดินทางจนถึงวันนี้ 🗺️</h2>
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Day 1</span>
+                            <h3>จุดเริ่มต้น</h3>
+                            <p>ดาวดวงหนึ่งได้ถือกำเนิดขึ้น! นี่คือจุดเริ่มต้นของการเดินทางอันสวยงาม</p>
+                            <div class="img-wrapper">
+                                <img src="./pics/baby.jpg" alt="Baby photo" class="timeline-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Year 20XX</span>
+                            <h3>Life Event 1 Title</h3>
+                            <p>Template description for an important milestone, like starting school or a core childhood memory.</p>
+                            <div class="img-wrapper">
+                                <img src="./pics/grown.JPG" alt="Event 1" class="timeline-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Year 20XX</span>
+                            <h3>Life Event 2 Title</h3>
+                            <p>Template description for another massive milestone. Graduation, an unforgettable trip, or a big achievement.</p>
+                            <div class="img-wrapper">
+                                <img src="./pics/work.JPG" alt="Event 2" class="timeline-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">ปัจจุบัน</span>
+                            <h3>บทปัจจุบัน</h3>
+                            <p>ไล่ตามความฝัน สร้างความทรงจำ และฉลองวันเกิดอันสวยงามในวันนี้!</p>
+                            <div class="img-wrapper">
+                                <img src="./pics/current.jpg" alt="Current photo" class="timeline-img">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="camera-generator-section scroll-reveal section-spacer">
+                <h2 class="section-title">สุ่มรูปภาพความทรงจำ 📸</h2>
+                
+                <div class="camera-body">
+                    <div class="camera-lens">
+                        <div class="lens-reflection"></div>
+                    </div>
+                    <div class="camera-flash-bulb"></div>
+                    <div class="camera-stripe"></div>
+                    
+                    <button id="generateBtn" class="camera-shutter-btn">
+                        <span>กดถ่ายรูป</span>
+                    </button>
+                    
+                    <div class="camera-photo-slot"></div>
+                </div>
+
+                <div class="polaroid-output-area">
+                    <div id="generatorViewer" class="polaroid-photo-frame">
+                        
+                        <div id="viewerPlaceholder" class="polaroid-placeholder-view">
+                            <div class="placeholder-icon">📷</div>
+                            <p>กดปุ่มชัตเตอร์บนกล้องเพื่อสุ่มดึงภาพถ่ายแห่งความทรงจำพิเศษออกมา!</p>
+                        </div>
+
+                        <div id="viewerContent" class="polaroid-rendered-view" style="display: none;">
+                            <div class="polaroid-image-container">
+                                <img id="generatedImage" src="" alt="Memory Asset">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3 id="generatedTitle"></h3>
+                                <p id="generatedDesc"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+  </main>
+<!-- REMASTERED: GALLERY FOLDER SECTION -->
+<section class="history-section full-width-gallery scroll-reveal ">
+    <h2 class="section-title">แฟ้มสะสมความทรงจำ 📁</h2>
+    
+    <div class="folder-container">
+    
+        <!-- OS-Style Interactive Tab Selectors -->
+        <div class="folder-tabs-header">
+            <button class="folder-tab-btn active" data-target-folder="all-memories">
+                <span class="tab-icon">📁</span> ทั้งหมด
+            </button>
+            <button class="folder-tab-btn" data-target-folder="video-vault">
+                <span class="tab-icon">🎬</span> วิดีโอคลิป
+            </button>
+            <button class="folder-tab-btn" data-target-folder="photo-album">
+                <span class="tab-icon">📸</span> อัลบั้มภาพ
+            </button>
+        </div>
+
+        <!-- The Physical Folder Main Body Wrapper -->
+        <div class="folder-body-wrapper">
+            <div class="folder-inner-grid" id="galleryFolderGrid">
+
+                <!-- Memory Card 1: Video File Node -->
+                <div class="memory-card folder-file-node" data-file-type="video-vault">
+                    <div class="file-tag-badge video-tag">VIDEO</div>
+                    <div class="video-container">
+                        <video controls poster="./pics/video_thumbnail.png">
+                            <source src="./pics/vdo1.mp4" type="video/mp4">
+                            เบราว์เซอร์ของคุณไม่รองรับแท็กวิดีโอ
+                        </video>
+                    </div>
+                    <div class="memory-info">
+                        <h3>การฉลองปีที่แล้ว 🎬</h3>
+                        <p>ภาพรวมของความสนุกและช่วงเวลาแสนหวานจากงานปาร์ตี้ปีที่แล้ว</p>
+                    </div>
+                </div>
+
+                <!-- Memory Card 2: Photo File Node -->
+                <div class="memory-card folder-file-node" data-file-type="photo-album">
+                    <div class="file-tag-badge photo-tag">IMAGE</div>
+                    <div class="img-wrapper">
+                        <img src="./pics/gall1.jpg" alt="Memory 1" class="memory-img">
+                    </div>
+                    <div class="memory-info">
+                        <h3>ความทรงจำเก่า 📸</h3>
+                        <p>ภาพที่ถ่ายในวันที่ไม่มีวันลืมพร้อมกับเพื่อนที่ดีที่สุด</p>
+                    </div>
+                </div>
+
+                <!-- Memory Card 3: Photo File Node -->
+                <div class="memory-card folder-file-node" data-file-type="photo-album">
+                    <div class="file-tag-badge photo-tag">IMAGE</div>
+                    <div class="img-wrapper">
+                        <img src="./pics/gall2.jpg" alt="Memory 2" class="memory-img">
+                    </div>
+                    <div class="memory-info">
+                        <h3>ช่วงเวลาหวาน 🍦</h3>
+                        <p>เตือนความจำเล็กน้อยของการผจญภัยเล็กๆ ที่ประกอบขึ้นเป็นปีที่ผ่านมา</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+  
+
+    <script src="script.js"></script>
+</body>
+</html>
